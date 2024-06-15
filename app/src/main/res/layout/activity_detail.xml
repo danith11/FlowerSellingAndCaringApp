@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.DetailActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-58dp"
+        tools:layout_editor_absoluteY="-336dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_backarrow"
+                    tools:ignore="MissingConstraints" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/PlantImage"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:src="@drawable/bloomwise"
+                />
+<!--            <ImageView-->
+<!--                android:id="@+id/PlantImage"-->
+<!--                android:layout_width="200dp"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:src="@drawable/bloomwise"-->
+<!--                />-->
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_margin="15dp"-->
+<!--                android:background="@color/light_grey">-->
+<!--&lt;!&ndash;                <androidx.viewpager2.widget.ViewPager2&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/viewpageSlider"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="200dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="200dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    tools:ignore="InvalidId" />&ndash;&gt;-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/PlantName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="Name"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/PlantPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:textSize="15dp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/Quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="15dp"
+                android:text="quantity"
+                android:textSize="15dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp">
+
+                <TextView
+                    android:id="@+id/PlantDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Description" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp">
+
+                <TextView
+                    android:id="@+id/Address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Address" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp">
+
+                <TextView
+                    android:id="@+id/phoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Number"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonAddToCart"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:text="Add to Cart"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:layout_marginTop="50dp"
+                tools:ignore="NotSibling" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

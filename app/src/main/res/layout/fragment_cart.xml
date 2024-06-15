@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.CartFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="Cart"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            tools:layout_editor_absoluteY="869dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cart_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/total_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total Price: $0"
+            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:padding="8dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/checkout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Checkout"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button"
+            android:padding="16dp" />
+
+    </LinearLayout>
+
+</FrameLayout>
+
+
+
+

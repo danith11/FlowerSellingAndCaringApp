@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ProfileFragment"
+    android:padding="15dp"
+    >
+
+<!--    <TextView-->
+<!--        android:id="@+id/textViewProfile"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="112dp"-->
+<!--        android:layout_marginTop="45dp"-->
+<!--        android:layout_marginEnd="112dp"-->
+<!--        android:text="Profile"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/imageView2"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView2"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginStart="28dp"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:onClick="onclickBackToHome"-->
+<!--        android:background="@drawable/backbutton"-->
+<!--        android:src="@drawable/ic_backarrow"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        android:contentDescription="TODO" />-->
+
+    <TextView
+        android:id="@+id/textViewProfileSell"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/uploadfield"
+        android:gravity="center"
+        android:onClick="onclickUpload"
+        android:text="Sell"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textViewProfileExhibition"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/uploadfield"
+        android:gravity="center"
+        android:text="Exhibition"
+        android:textStyle="bold"
+        android:onClick="onclickExhibition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProfileSell"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textViewProfileStoremap"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/uploadfield"
+        android:gravity="center"
+        android:onClick="onclickMap"
+        android:text="Store Map"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProfileExhibition"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textViewProfileNotification"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/uploadfield"
+        android:gravity="center"
+        android:text="Notification"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProfileStoremap"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textViewProfileAccountinfo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/uploadfield"
+        android:gravity="center"
+        android:text="Account info"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProfileNotification"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonLogOut"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button"
+        android:text="LOG OUT"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProfileAccountinfo"
+        app:layout_constraintVertical_bias="0.391" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

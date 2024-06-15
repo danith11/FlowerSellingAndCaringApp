@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.UploadActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imageViewbacktoProfile"-->
+<!--            android:layout_width="48dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:onClick="onClickBackToProfile"-->
+<!--            android:background="@drawable/backbutton"-->
+<!--            app:srcCompat="@drawable/ic_backarrow" />-->
+
+        <TextView
+            android:id="@+id/textViewUploadQuiz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
+            android:text="So you want to sell what you have ? "
+            android:textSize="20dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+           <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1000dp"
+            android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewUploaadName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginStart="20dp"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:text="Name of the Plant" />
+
+                    <EditText
+                        android:id="@+id/editTextUploadName"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/uploadfield"
+                        />
+
+                    <TextView
+                        android:id="@+id/textViewUploadPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:text="Price" />
+
+                    <EditText
+                        android:id="@+id/editTextUploadPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/uploadfield"
+                        />
+                    <TextView
+                        android:id="@+id/textViewQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:text="Quantity" />
+
+                    <EditText
+                        android:id="@+id/editTextQuantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/uploadfield"
+                        />
+                    <TextView
+                        android:id="@+id/textViewUploadDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:text="Description" />
+
+                    <EditText
+                        android:id="@+id/editTextUploadDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/uploadfield"
+                        />
+
+                    <TextView
+                        android:id="@+id/textViewUploadAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:text="Address" />
+
+                    <EditText
+                        android:id="@+id/editTextUploadAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/uploadfield"
+                        />
+
+                    <TextView
+                        android:id="@+id/textViewUploaadPhoneNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginStart="20dp"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:text="Phone Number" />
+
+                    <EditText
+                        android:id="@+id/editTextUploadPhoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="phone"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/uploadfield"
+                        />
+
+                    <TextView
+                        android:id="@+id/textViewUploadImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:text="Image" />
+
+                    <ImageView
+                        android:id="@+id/imageViewUploadImage"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:padding="30dp"
+                        android:background="@drawable/uploadfield"
+                        app:srcCompat="@drawable/ic_add" />
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:id="@+id/images"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@+id/imageLabel"-->
+<!--                        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"-->
+<!--                        app:spanCount="5"-->
+<!--                        tools:listitem="@layout/row_image_picked"/>-->
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/buttonUploadSave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="40dp"
+                        android:text="UPLOAD" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

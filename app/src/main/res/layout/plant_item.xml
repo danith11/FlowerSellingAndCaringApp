@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="8dp"
+    android:background="@drawable/plantbackground"
+    android:layout_height="220dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/PlantImage"
+        android:layout_width="156dp"
+        android:layout_height="149dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.507" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="233dp"
+        android:layout_height="229dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/PlantImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.444" />
+
+    <TextView
+        android:id="@+id/PlantName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:lines="2"
+        android:maxLines="3"
+        android:text="Title"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/PlantPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Price"
+        app:layout_constraintStart_toStartOf="@+id/PlantName"
+        app:layout_constraintTop_toBottomOf="@+id/PlantName" />
+
+    <TextView
+        android:id="@+id/plantQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="description"
+        app:layout_constraintStart_toStartOf="@+id/PlantPrice"
+        app:layout_constraintTop_toBottomOf="@+id/PlantPrice" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
