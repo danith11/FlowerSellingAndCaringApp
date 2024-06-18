@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() != null) {
 
             // if true open MainActivity
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION); // to stop flashing of activity when intent is working
             startActivity(intent);
             finish();
