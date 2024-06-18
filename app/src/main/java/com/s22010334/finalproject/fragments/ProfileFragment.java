@@ -45,7 +45,7 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        //Logout
+        // Logout
         binding.buttonLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +57,7 @@ public class ProfileFragment extends Fragment {
         binding.textViewProfileSell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),UploadActivity.class));
+                startActivity(new Intent(getActivity(), UploadActivity.class));
             }
         });
 
@@ -65,7 +65,7 @@ public class ProfileFragment extends Fragment {
         binding.textViewProfileExhibition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),ExhibitionActivity.class));
+                startActivity(new Intent(getActivity(), ExhibitionActivity.class));
             }
         });
 
@@ -73,7 +73,7 @@ public class ProfileFragment extends Fragment {
         binding.textViewProfileAccountinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),EditAccountInfo.class));
+                startActivity(new Intent(getActivity(), EditAccountInfo.class));
             }
         });
 
@@ -81,14 +81,17 @@ public class ProfileFragment extends Fragment {
         binding.textViewProfileStoremap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),Map3Activity.class));
+                startActivity(new Intent(getActivity(), Map3Activity.class));
             }
         });
     }
 
-    //Logout function
+    // Logout function
     public void AccLogout(){
         firebaseAuth.signOut();
-        startActivity(new Intent(getActivity(), LoginActivity.class));
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        getActivity().finish(); // This ensures that the current activity is finished
     }
 }
