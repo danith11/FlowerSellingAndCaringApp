@@ -1,5 +1,5 @@
 package com.s22010334.finalproject.Activities;
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +16,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -34,7 +34,6 @@ public class UploadActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private StorageReference storageReference;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,24 +86,34 @@ public class UploadActivity extends AppCompatActivity {
 
     private void uploadData() {
         String name = editTextUploadName.getText().toString().trim();
-        String priceStr = String.valueOf(Double.parseDouble(editTextUploadPrice.getText().toString().trim()));
-        String quantityStr = String.valueOf(Integer.parseInt(editTextQuantity.getText().toString().trim()));
+        String priceStr = editTextUploadPrice.getText().toString().trim();
+        String quantityStr = editTextQuantity.getText().toString().trim();
         String description = editTextUploadDescription.getText().toString().trim();
         String address = editTextUploadAddress.getText().toString().trim();
-        String PhoneNumber = editTextUploadPhoneNumber.getText().toString().trim();
+        String phoneNumberStr = editTextUploadPhoneNumber.getText().toString().trim();
 
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(priceStr) || TextUtils.isEmpty(quantityStr) ||
                 TextUtils.isEmpty(description) || TextUtils.isEmpty(address) || imageUri == null) {
             Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
             return;
         }
+
         double price;
         int quantity;
+        Long phoneNumber;
+
         try {
             price = Double.parseDouble(priceStr);
             quantity = Integer.parseInt(quantityStr);
+            phoneNumber = Long.parseLong(phoneNumberStr);
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Price and Quantity must be valid numbers", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String userId = FirebaseAuth.getInstance().getUid();
+        if (userId == null) {
+            Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -117,10 +126,14 @@ public class UploadActivity extends AppCompatActivity {
                         fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Upload upload = new Upload(name, price, quantity, description, address, uri.toString(),PhoneNumber);
                                 String uploadId = databaseReference.push().getKey();
-                                databaseReference.child(uploadId).setValue(upload);
-                                Toast.makeText(UploadActivity.this, "Upload successful", Toast.LENGTH_SHORT).show();
+                                if (uploadId != null) {
+                                    Upload upload = new Upload(userId, name, price, quantity, description, address, uri.toString(), phoneNumber);
+                                    databaseReference.child(uploadId).setValue(upload);
+                                    Toast.makeText(UploadActivity.this, "Upload successful", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(UploadActivity.this, "Failed to generate upload ID", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
                     }
@@ -133,30 +146,40 @@ public class UploadActivity extends AppCompatActivity {
                 });
     }
 
+
     public static class Upload {
+        public String userId;
         public String name;
         public double price;
         public int quantity;
         public String description;
         public String address;
         public String imageUrl;
-        public String PhoneNumber;
+        public Long phoneNumber;
 
         public Upload() {
             // Default constructor required for calls to DataSnapshot.getValue(Upload.class)
         }
 
-        public Upload(String name, double price, int quantity, String description, String address, String imageUrl,String PhoneNumber) {
+        public Upload(String userId, String name, double price, int quantity, String description, String address, String imageUrl, Long phoneNumber) {
+            this.userId = userId;
             this.name = name;
             this.price = price;
             this.quantity = quantity;
             this.description = description;
             this.address = address;
             this.imageUrl = imageUrl;
-            this.PhoneNumber = PhoneNumber;
+            this.phoneNumber = phoneNumber;
         }
 
         // Getters and setters (if needed)
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
 
         public String getName() {
             return name;
@@ -206,14 +229,15 @@ public class UploadActivity extends AppCompatActivity {
             this.imageUrl = imageUrl;
         }
 
-        public String getPhoneNumber() {
-            return PhoneNumber;
+        public Long getPhoneNumber() {
+            return phoneNumber;
         }
 
-        public void setPhoneNumber(String phoneNumber) {
-            PhoneNumber = phoneNumber;
+        public void setPhoneNumber(Long phoneNumber) {
+            this.phoneNumber = phoneNumber;
         }
     }
+
 }
 
 
