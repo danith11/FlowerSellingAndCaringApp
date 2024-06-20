@@ -355,3 +355,4 @@ public class DetailActivity extends AppCompatActivity {
         return !isFinishing() && !isDestroyed();
     }
 }
+
