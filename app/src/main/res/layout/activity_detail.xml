@@ -42,24 +42,6 @@
                 android:layout_margin="30dp"
                 android:src="@drawable/bloomwise"
                 />
-<!--            <ImageView-->
-<!--                android:id="@+id/PlantImage"-->
-<!--                android:layout_width="200dp"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:src="@drawable/bloomwise"-->
-<!--                />-->
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:layout_margin="15dp"-->
-<!--                android:background="@color/light_grey">-->
-<!--&lt;!&ndash;                <androidx.viewpager2.widget.ViewPager2&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:id="@+id/viewpageSlider"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_width="200dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_height="200dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    tools:ignore="InvalidId" />&ndash;&gt;-->
-
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -121,13 +103,14 @@
                     android:id="@+id/Address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Address" />
+                    android:text="Address"
+                    tools:ignore="MissingConstraints" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
@@ -138,20 +121,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Number"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="0dp" />
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-
+                <ImageView
+                    android:id="@+id/phoneIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_phone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.089"
+                    app:layout_constraintStart_toEndOf="@id/phoneNumber"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonAddToCart"
-                android:layout_width="300dp"
+                android:layout_width="296dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/button"
                 android:text="Add to Cart"
-                android:layout_gravity="center"
                 android:textColor="@color/white"
-                android:layout_marginTop="50dp"
                 tools:ignore="NotSibling" />
         </LinearLayout>
     </ScrollView>
