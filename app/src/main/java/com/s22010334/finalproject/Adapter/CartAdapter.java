@@ -167,6 +167,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 .error(R.drawable.ic_warning)
                 .into(holder.plantImage);
 
+        long currentTime = System.currentTimeMillis();
+        long timeSinceAdded = currentTime - cartItem.getTimestamp();
+        long oneHourInMillis = 60 * 60 * 1000;
+
+        boolean canUpdateQuantity = timeSinceAdded <= oneHourInMillis;
+
         holder.buttonRemove.setOnClickListener(v -> {
             String cartItemId = cartItem.getId();
             if (cartItemId != null) {
@@ -185,37 +191,48 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
+        holder.buttonIncrease.setEnabled(canUpdateQuantity);
+        holder.buttonDecrease.setEnabled(canUpdateQuantity);
 
         holder.buttonIncrease.setOnClickListener(v -> {
-            getAvailableQuantity(cartItem.getUploadId(), availableQuantity -> {
-                int currentCartQuantity = cartItem.getQuantity();
-                int totalAvailable = availableQuantity + currentCartQuantity;
-                int newQuantity = currentCartQuantity + 1;
-                if (newQuantity <= totalAvailable) {
-                    cartItem.setQuantity(newQuantity);
-                    holder.plantQuantity.setText(String.valueOf(newQuantity));
-                    CartManager.getInstance().updateCartItemQuantity(cartItem.getId(), newQuantity);
-                    CartManager.getInstance().adjustUploadItemQuantity(cartItem.getUploadId(), -1); // Decrease the quantity in uploads
-                    cartFragment.calculateTotalPrice(cartItemList);
-                } else {
-                    Toast.makeText(context, "Cannot exceed available quantity", Toast.LENGTH_SHORT).show();
-                }
-            });
+            if (canUpdateQuantity) {
+                getAvailableQuantity(cartItem.getUploadId(), availableQuantity -> {
+                    int currentCartQuantity = cartItem.getQuantity();
+                    int totalAvailable = availableQuantity + currentCartQuantity;
+                    int newQuantity = currentCartQuantity + 1;
+                    if (newQuantity <= totalAvailable) {
+                        cartItem.setQuantity(newQuantity);
+                        holder.plantQuantity.setText(String.valueOf(newQuantity));
+                        CartManager.getInstance().updateCartItemQuantity(cartItem.getId(), newQuantity);
+                        CartManager.getInstance().adjustUploadItemQuantity(cartItem.getUploadId(), -1); // Decrease the quantity in uploads
+                        cartFragment.calculateTotalPrice(cartItemList);
+                    } else {
+                        Toast.makeText(context, "Cannot exceed available quantity", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                Toast.makeText(context, "You can only update the quantity within 1 hour of adding the item to the cart", Toast.LENGTH_SHORT).show();
+            }
         });
 
         holder.buttonDecrease.setOnClickListener(v -> {
-            if (cartItem.getQuantity() > 1) {
-                int newQuantity = cartItem.getQuantity() - 1;
-                cartItem.setQuantity(newQuantity);
-                holder.plantQuantity.setText(String.valueOf(newQuantity));
-                CartManager.getInstance().updateCartItemQuantity(cartItem.getId(), newQuantity);
-                CartManager.getInstance().adjustUploadItemQuantity(cartItem.getUploadId(), 1); // Increase the quantity in uploads
-                cartFragment.calculateTotalPrice(cartItemList);
+            if (canUpdateQuantity) {
+                if (cartItem.getQuantity() > 1) {
+                    int newQuantity = cartItem.getQuantity() - 1;
+                    cartItem.setQuantity(newQuantity);
+                    holder.plantQuantity.setText(String.valueOf(newQuantity));
+                    CartManager.getInstance().updateCartItemQuantity(cartItem.getId(), newQuantity);
+                    CartManager.getInstance().adjustUploadItemQuantity(cartItem.getUploadId(), 1); // Increase the quantity in uploads
+                    cartFragment.calculateTotalPrice(cartItemList);
+                } else {
+                    Toast.makeText(context, "Quantity cannot be less than 1", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(context, "Quantity cannot be less than 1", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "You can only update the quantity within 1 hour of adding the item to the cart", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
@@ -263,7 +280,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             buttonRemove = itemView.findViewById(R.id.cart_remove_button);
         }
     }
-    
 }
 
 
