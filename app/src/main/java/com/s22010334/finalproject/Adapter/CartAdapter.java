@@ -263,6 +263,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             buttonRemove = itemView.findViewById(R.id.cart_remove_button);
         }
     }
+    
 }
 
 
