@@ -162,8 +162,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -186,10 +188,11 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView plantImage;
     private TextView plantName, plantPrice, plantDescription, plantAddress, plantPhone, plantQuantity;
     private Button buttonAddToCart;
+    private ImageView phoneIcon; 
     private DatabaseReference databaseReference;
     private String ID;
-    private String plantImageUrl; // Add this line to store the image URL
-    private int currentQuantity; // To store the current quantity
+    private String plantImageUrl; 
+    private int currentQuantity; 
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -206,6 +209,19 @@ public class DetailActivity extends AppCompatActivity {
         plantPhone = findViewById(R.id.phoneNumber);
         plantQuantity = findViewById(R.id.Quantity);
         buttonAddToCart = findViewById(R.id.buttonAddToCart);
+        phoneIcon = findViewById(R.id.phoneIcon); 
+        
+        // Set click listener for the phone call 
+        phoneIcon.setOnClickListener(v -> {
+            String phoneNumber = plantPhone.getText().toString().replace("Contact Number - ", "").trim();
+            if (!phoneNumber.isEmpty()) {
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+                dialIntent.setData(Uri.parse("tel:" + phoneNumber));
+                startActivity(dialIntent);
+            } else {
+                Toast.makeText(DetailActivity.this, "Phone number is not available", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Get product ID from Intent
         Intent intent = getIntent();
@@ -282,6 +298,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+        // Add to cart
         buttonAddToCart.setOnClickListener(v -> {
             if (currentQuantity > 0) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
