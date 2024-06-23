@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,21 +13,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.s22010334.finalproject.Adapter.OrderAdapter;
-import com.s22010334.finalproject.Domain.OrderDomain;
 import com.s22010334.finalproject.Domain.CartDomain;
+import com.s22010334.finalproject.Domain.OrderDomain;
 import com.s22010334.finalproject.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SellerOrdersActivity extends AppCompatActivity {
     private RecyclerView ordersRecyclerView;
     private OrderAdapter orderAdapter;
     private List<OrderDomain> ordersList;
     private DatabaseReference uploadsRef;
-    private String currentUserId; // Store current user ID
+    private String currentUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +41,7 @@ public class SellerOrdersActivity extends AppCompatActivity {
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         uploadsRef = FirebaseDatabase.getInstance().getReference("uploads");
 
-        fetchOrders(); // Start fetching orders for the current user
+        fetchOrders();
     }
 
     private void fetchOrders() {
@@ -78,9 +75,7 @@ public class SellerOrdersActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String uploaderUserId = snapshot.child("userId").getValue(String.class);
                 if (currentUserId.equals(uploaderUserId)) {
-                    ordersList.add(order);
-                    orderAdapter.notifyDataSetChanged();
-                    sendNotificationToUploader(uploaderUserId, order);
+                    fetchCustomerDetails(order);
                 }
             }
 
@@ -91,16 +86,32 @@ public class SellerOrdersActivity extends AppCompatActivity {
         });
     }
 
-    private void sendNotificationToUploader(String uploaderUserId, OrderDomain order) {
-        // Implement your notification logic here.
-        // For example, you can send a message to the uploader using Firebase Cloud Messaging (FCM)
-        // This is just a placeholder and you should replace it with your actual notification code.
-        Log.d("SellerOrdersActivity", "Notification sent to uploader: " + uploaderUserId + " for order: " + order.getOrderId());
+    private void fetchCustomerDetails(OrderDomain order) {
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users").child(order.getUserId());
+
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String customerName = snapshot.child("name").getValue(String.class);
+                String customerPhone = snapshot.child("phone").getValue(String.class);
+
+                if (customerName != null && customerPhone != null) {
+                    order.setCustomerName(customerName);
+                    order.setCustomerPhone(customerPhone);
+                }
+
+                ordersList.add(order);
+                orderAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("SellerOrdersActivity", "Error fetching customer details", error.toException());
+            }
+        });
     }
 
     public void acceptOrder(OrderDomain order) {
-        // Handle order acceptance logic here.
         Log.d("SellerOrdersActivity", "Order accepted: " + order.getOrderId());
-        // You can update the order status in Firebase or perform other actions as needed.
     }
 }
