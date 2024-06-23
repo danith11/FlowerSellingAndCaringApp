@@ -1,0 +1,63 @@
+package com.s22010334.finalproject.Adapter;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.s22010334.finalproject.Activities.SellerOrdersActivity;
+import com.s22010334.finalproject.Domain.OrderDomain;
+import com.s22010334.finalproject.R;
+
+import java.util.List;
+
+public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
+    private Context context;
+    private List<OrderDomain> orders;
+    private SellerOrdersActivity activity;
+
+    public OrderAdapter(Context context, List<OrderDomain> orders, SellerOrdersActivity activity) {
+        this.context = context;
+        this.orders = orders;
+        this.activity = activity;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_order, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        OrderDomain order = orders.get(position);
+        holder.orderIdTextView.setText("Order ID: " + order.getOrderId());
+        holder.statusTextView.setText("Status: " + order.getStatus());
+        holder.acceptButton.setOnClickListener(v -> {
+            activity.acceptOrder(order); // Call method in activity when button is clicked
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return orders.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView orderIdTextView;
+        TextView statusTextView;
+        Button acceptButton;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            orderIdTextView = itemView.findViewById(R.id.order_id_text_view);
+            statusTextView = itemView.findViewById(R.id.status_text_view);
+            acceptButton = itemView.findViewById(R.id.accept_button);
+        }
+    }
+}
