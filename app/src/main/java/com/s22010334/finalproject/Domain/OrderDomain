@@ -1,0 +1,64 @@
+package com.s22010334.finalproject.Domain;
+
+import java.util.List;
+
+public class OrderDomain {
+    private String orderId;
+    private String userId;
+    private List<CartDomain> items;
+    private String status;
+    private long timestamp;
+
+    public OrderDomain() {
+        // Default constructor required for calls to DataSnapshot.getValue(OrderDomain.class)
+    }
+
+    public OrderDomain(String orderId, String userId, List<CartDomain> items, String status, long timestamp) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.items = items;
+        this.status = status;
+        this.timestamp = timestamp;
+    }
+
+    // Getters and Setters for each field
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public List<CartDomain> getItems() {
+        return items;
+    }
+
+    public void setItems(List<CartDomain> items) {
+        this.items = items;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+}
