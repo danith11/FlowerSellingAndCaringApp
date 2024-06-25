@@ -54,7 +54,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.customerNameTextView.setText("Customer Name: " + order.getCustomerName());
         holder.customerPhoneTextView.setText("Customer Phone: " + order.getCustomerPhone());
 
-        holder.acceptButton.setOnClickListener(v -> activity.acceptOrder(order));
+        if ("accepted".equals(order.getStatus())) {
+            holder.acceptButton.setVisibility(View.GONE);
+        } else {
+            holder.acceptButton.setVisibility(View.VISIBLE);
+        }
+
+        holder.acceptButton.setOnClickListener(v -> {
+            if (!order.getStatus().equals("accepted")) {
+                activity.acceptOrder(order);
+            } else {
+                Toast.makeText(context, "Order already accepted.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Set OnClickListener to dial the phone number
         holder.customerPhoneTextView.setOnClickListener(v -> {
@@ -79,6 +91,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
