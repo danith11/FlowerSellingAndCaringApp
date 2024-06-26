@@ -233,7 +233,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         });
     }
 
-
     @Override
     public int getItemCount() {
         return cartItemList.size();
